@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+C:\Users\Kolpa\Desktop\ILY\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2198289118.index
+\WebIM\src\main\java
+C:\Users\Kolpa\Desktop\ILY\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1151441366.index
+\WebILY\src\main\java
+C:\Users\Kolpa\Desktop\ILY\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1462526194.index
+\MyWebMI\src\main\java
