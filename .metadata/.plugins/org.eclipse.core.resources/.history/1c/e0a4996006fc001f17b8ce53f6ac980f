@@ -1,0 +1,154 @@
+package com;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/Support")
+public class SupportServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    
+    // Simple in-memory storage for tickets (in a real app, you'd use a database)
+    private static Map<Integer, Ticket> tickets = new HashMap<>();
+    private static int ticketCounter = 1;
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+        
+        if (username == null) {
+            // User not logged in, redirect to login page
+            response.sendRedirect("mainpage.jsp");
+            return;
+        }
+        
+        String action = request.getParameter("action");
+        
+        if (action == null) {
+            // Display list of tickets
+            List<Ticket> userTickets = new ArrayList<>();
+            for (Ticket ticket : tickets.values()) {
+                if (ticket.getUsername().equals(username)) {
+                    userTickets.add(ticket);
+                }
+            }
+            
+            request.setAttribute("tickets", userTickets);
+            request.getRequestDispatcher("/ticketList.jsp").forward(request, response);
+        } else if (action.equals("view")) {
+            // View a specific ticket
+            int ticketId = Integer.parseInt(request.getParameter("id"));
+            Ticket ticket = tickets.get(ticketId);
+            
+            if (ticket != null && ticket.getUsername().equals(username)) {
+                request.setAttribute("ticket", ticket);
+                request.getRequestDispatcher("/ticketView.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("Support");
+            }
+        } else if (action.equals("new")) {
+            // Show new ticket form
+            request.getRequestDispatcher("/newTicket.jsp").forward(request, response);
+        }
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+        
+        if (username == null) {
+            // User not logged in, redirect to login page
+            response.sendRedirect("mainpage.jsp");
+            return;
+        }
+        
+        String action = request.getParameter("action");
+        
+        if (action.equals("create")) {
+            // Create a new ticket
+            String subject = request.getParameter("subject");
+            String description = request.getParameter("description");
+            
+            Ticket newTicket = new Ticket(ticketCounter++, username, subject, description);
+            tickets.put(newTicket.getId(), newTicket);
+            
+            response.sendRedirect("Support");
+        } else if (action.equals("reply")) {
+            // Add a reply to an existing ticket
+            int ticketId = Integer.parseInt(request.getParameter("id"));
+            String message = request.getParameter("message");
+            
+            Ticket ticket = tickets.get(ticketId);
+            if (ticket != null && ticket.getUsername().equals(username)) {
+                ticket.addMessage(username, message);
+            }
+            
+            response.sendRedirect("Support?action=view&id=" + ticketId);
+        }
+    }
+    
+    // Inner class for ticket representation
+    public static class Ticket {
+        private int id;
+        private String username;
+        private String subject;
+        private String description;
+        private String status;
+        private List<TicketMessage> messages;
+        private long createdTime;
+        
+        public Ticket(int id, String username, String subject, String description) {
+            this.id = id;
+            this.username = username;
+            this.subject = subject;
+            this.description = description;
+            this.status = "Open";
+            this.messages = new ArrayList<>();
+            this.createdTime = System.currentTimeMillis();
+        }
+        
+        public void addMessage(String sender, String content) {
+            messages.add(new TicketMessage(sender, content));
+        }
+        
+        // Getters and setters
+        public int getId() { return id; }
+        public String getUsername() { return username; }
+        public String getSubject() { return subject; }
+        public String getDescription() { return description; }
+        public String getStatus() { return status; }
+        public void setStatus(String status) { this.status = status; }
+        public List<TicketMessage> getMessages() { return messages; }
+        public long getCreatedTime() { return createdTime; }
+    }
+    
+    public static class TicketMessage {
+        private String sender;
+        private String content;
+        private long timestamp;
+        
+        public TicketMessage(String sender, String content) {
+            this.sender = sender;
+            this.content = content;
+            this.timestamp = System.currentTimeMillis();
+        }
+        
+        // Getters
+        public String getSender() { return sender; }
+        public String getContent() { return content; }
+        public long getTimestamp() { return timestamp; }
+    }
+}
