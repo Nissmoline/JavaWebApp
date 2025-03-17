@@ -55,6 +55,3 @@ This project is a university assignment and is not open for external contributio
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
-
-Please note that some details are assumed based on standard practices, as the specific contents of the directories are not fully visible from the provided information. 
