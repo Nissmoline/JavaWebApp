@@ -1,0 +1,35 @@
+<%@ page import="com.User" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пользователь</title>
+</head>
+<body>
+    <h2>Техподдержка</h2>
+
+    <%
+        // Точно так же берём пользователя из session
+        User user = (User) session.getAttribute("user");
+        // Если пользователь не залогинен — отправляем на login.jsp
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+    %>
+
+    <p>Здравствуйте, <%= user.getLogin() %>! (роль: <%= user.getRole() %>)</p>
+
+    <!-- Форма отправки обращения в техподдержку -->
+    <form action="#" method="post">
+        <label for="issue">Опишите проблему:</label><br>
+        <textarea id="issue" name="issue" rows="5" cols="30"></textarea><br><br>
+        <input type="submit" value="Отправить">
+    </form>
+
+    <!-- Кнопка "Выйти" -->
+    <form action="logout" method="post">
+        <input type="submit" value="Выйти">
+    </form>
+</body>
+</html>

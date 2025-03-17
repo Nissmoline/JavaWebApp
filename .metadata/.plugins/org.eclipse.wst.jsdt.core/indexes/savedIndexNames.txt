@@ -1,9 +1,8 @@
-INDEX VERSION 1.4+C:\Users\Kolpa\Desktop\ILY\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2701997264.index
-1368282696.index
-3968643305.index
-3763070143.index
-2747883248.index
-3910513288.index
-4254001565.index
-1462526194.index
+INDEX VERSION 1.4+C:\Users\Kolpa\Desktop\tech-support-site\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4021565913.index
+2236610492.index
+2660444769.index
+735237694.index
+3933166699.index
+1911398951.index
+2318732553.index

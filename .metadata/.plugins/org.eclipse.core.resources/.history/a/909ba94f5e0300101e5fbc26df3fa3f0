@@ -1,0 +1,37 @@
+<%@ page import="com.User" %>
+<%@ page import="jakarta.servlet.http.*" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пользователь</title>
+</head>
+<body>
+    <h2>Техподдержка</h2>
+
+    <%
+        HttpSession session = request.getSession(false);
+        User user = null;
+        if (session != null) {
+            user = (User) session.getAttribute("user");
+        }
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+    %>
+
+    <p>Здравствуйте, <%= user.getLogin() %>! (роль: <%= user.getRole() %>)</p>
+
+    <!-- Здесь форма для отправки обращения в техподдержку -->
+    <form action="#" method="post">
+        <label for="issue">Опишите проблему:</label><br>
+        <textarea id="issue" name="issue" rows="5" cols="30"></textarea><br><br>
+        <input type="submit" value="Отправить">
+    </form>
+
+    <form action="logout" method="post">
+        <input type="submit" value="Выйти">
+    </form>
+</body>
+</html>

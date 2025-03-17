@@ -1,0 +1,27 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход</title>
+</head>
+<body>
+    <h2>Вход в систему</h2>
+    <form action="login" method="post">
+        Логин: <br>
+        <input type="text" name="username" /><br><br>
+        Пароль: <br>
+        <input type="password" name="password" /><br><br>
+        <input type="submit" value="Войти" />
+    </form>
+
+    <!-- Вывод ошибки, если она есть -->
+    <%
+        String error = (String) request.getAttribute("error");
+        if (error != null) {
+    %>
+        <p style="color:red;"><%= error %></p>
+    <%
+        }
+    %>
+</body>
+</html>

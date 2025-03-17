@@ -1,0 +1,18 @@
+package com;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class UserDao {
+    // Храним пользователей в статической карте
+    private static Map<String, User> users = new HashMap<>();
+
+    static {
+        users.put("admin", new User("admin", "admin123", "ADMIN"));
+        users.put("user", new User("user", "user123", "USER")); 
+    }
+
+    public static User findByLogin(String login) {
+        return users.get(login);
+    }
+}
