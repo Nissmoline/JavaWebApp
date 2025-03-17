@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDao {
-    // Since we don't have a database, we will store users in a static map.
+    // Храним пользователей в статической карте
     private static Map<String, User> users = new HashMap<>();
 
     static {

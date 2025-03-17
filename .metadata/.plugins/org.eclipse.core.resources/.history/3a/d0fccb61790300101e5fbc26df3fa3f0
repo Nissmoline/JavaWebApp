@@ -28,6 +28,7 @@
      <h1>Техподдержка</h1>
     <p>Здравствуйте, <%= user.getLogin() %>! (роль: <%= user.getRole() %>)</p>
 
+    <!-- Форма для отправки заявки в поддержку -->
     <form action="#" method="post" class="mt-3">
         <div class="mb-3">
             <label for="issue" class="form-label">Опишите проблему:</label>
