@@ -7,15 +7,15 @@ This project is a university assignment to develop a user support website using 
 
 The repository contains the following main components:
 
-- **tech-support-site/**: This directory likely contains the main source code for the web application, including servlets, JSPs, and other resources.
-- **Servers/**: This directory may contain server configuration files or related resources.
-- **.metadata/**: This directory is typically used by IDEs like Eclipse to store workspace-specific metadata.
+- **tech-support-site/**: This directory likely contains the main source code for the web application, including servlets, JSPs, and other resources.
+- **Servers/**: This directory may contain server configuration files or related resources.
+- **.metadata/**: This directory is typically used by IDEs like Eclipse to store workspace-specific metadata.
 
 ## Technologies Used
 
-- **Java**: The core programming language used for developing servlets.
-- **JavaScript**: Used for client-side scripting to enhance user interaction.
-- **Apache Tomcat**: The application server used to deploy and run the web application.
+- **Java**: The core programming language used for developing servlets.
+- **JavaScript**: Used for client-side scripting to enhance user interaction.
+- **Apache Tomcat**: The application server used to deploy and run the web application.
 
 ## Setup Instructions
 
@@ -35,8 +35,8 @@ The repository contains the following main components:
 
 4. **Build and Deploy**:
 
-   - Build the project to ensure all dependencies are resolved.
-   - Deploy the application to the Tomcat server.
+   - Build the project to ensure all dependencies are resolved.
+   - Deploy the application to the Tomcat server.
 
 5. **Access the Application**:
 
@@ -44,14 +44,14 @@ The repository contains the following main components:
 
 ## Features
 
-- **User Support Interface**: Allows users to submit support tickets and view responses.
-- **Admin Panel**: Enables administrators to manage support tickets and respond to user inquiries.
+- **User Support Interface**: Allows users to submit support tickets and view responses.
+- **Admin Panel**: Enables administrators to manage support tickets and respond to user inquiries.
 
 ## Contributing
 
-This project is a university assignment and is not open for external contributions.
+This project is a university assignment and is not open for external contributions.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. 
 
